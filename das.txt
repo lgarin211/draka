@@ -5,5 +5,10 @@ sudo chmod -R 777 xampp-linux-x64-7.4.21-0-installer.run
 wget https://lgarin211.github.io/draka/das2.txt
 wget https://lgarin211.github.io/draka/das3.txt
 sudo chmod 777 * 
-sudo mkdir /var/www/html
-sudo mkdir /var/www/efs-data
+cd /var
+sudo mkdir www
+cd www
+sudo mkdir html
+sudo mkdir efs-data
+cd 
+sudo rm -rf das.txt
