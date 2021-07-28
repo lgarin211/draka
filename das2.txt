@@ -1,5 +1,6 @@
-cd
+cd ~
 sudo ./xampp-linux-x64-7.4.21-0-installer.run
+sudo /opt/lampp/lampp start
 sudo ln -s /opt/lampp/bin/php /usr/bin/php
 sudo ln -s /opt/lampp/bin/mysql /usr/bin/mysql
 clear
@@ -8,10 +9,11 @@ echo 'sudah hampir selesai';
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 sudo php composer-setup.php --install-dir=/bin --filename=composer 
-php -r "unlink('composer-setup.php');"
+php -r "unlink('composer-setup.php');";echo 'endan';
 composer -v 
 cd /opt/lampp 
 sudo mv htdocs htdocs_bug
 sudo ln -s /var/www/html /opt/lampp/htdocs
-cd 
-sudo rm -rf das2.txt
+cd ~
+sudo rm -rf das2.txt das.txt
+clear
