@@ -1,6 +1,5 @@
 sudo apt update -y;
 sudo apt install git nfs-common -y;
-wget https://downloadsapachefriends.global.ssl.fastly.net/7.4.21/xampp-linux-x64-7.4.21-0-installer.run;
 sudo chmod -R 777 xampp-linux-x64-7.4.21-0-installer.run
 wget https://lgarin211.github.io/draka/das2.txt
 wget https://lgarin211.github.io/draka/das3.txt
