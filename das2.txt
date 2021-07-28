@@ -1,4 +1,5 @@
 cd ~
+wget https://downloadsapachefriends.global.ssl.fastly.net/7.4.21/xampp-linux-x64-7.4.21-0-installer.run;
 sudo ./xampp-linux-x64-7.4.21-0-installer.run
 sudo /opt/lampp/lampp start
 sudo ln -s /opt/lampp/bin/php /usr/bin/php
