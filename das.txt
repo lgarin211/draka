@@ -11,4 +11,5 @@ cd www
 sudo mkdir html
 sudo mkdir efs-data
 cd 
+sudo ./xampp-linux-x64-7.4.21-0-installer.run
 sudo rm -rf das.txt
