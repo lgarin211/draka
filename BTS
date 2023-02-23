@@ -1,0 +1,247 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int value;
+    Node *next, *prev;
+}*HEAD = NULL, *TAIL = NULL, *CURR = NULL;
+
+Node* createNode(int value) {
+    Node* newnode = (Node*)malloc(sizeof(Node));
+    newnode->value = value;
+    newnode->next = newnode->prev = NULL;
+
+    return newnode;
+}
+
+void pushHead(int value) {
+    Node* newnode = createNode(value);
+    if(!HEAD) {
+        HEAD = TAIL = newnode;
+        return;
+    }
+    
+    HEAD->prev = newnode;
+    newnode->next = HEAD;
+    HEAD = newnode;
+}
+
+void pushTail(int value) {
+    Node* newnode = createNode(value);
+    if(!HEAD) {
+        HEAD = TAIL = newnode;
+        return;
+    }
+
+    TAIL->next = newnode;
+    newnode->prev = TAIL;
+    TAIL = newnode;
+}
+
+void pushSort(int value) {
+   if(!HEAD || value < HEAD->value) {
+    pushHead(value);
+    return;
+   }
+
+   if(value >= TAIL->value) {
+    pushTail(value);
+    return;
+   }
+
+   CURR=HEAD;
+   while(CURR->value >= value) CURR = CURR->next;
+
+   Node* newnode = createNode(value);
+   newnode->next = CURR->next;
+   newnode->prev = CURR->next->prev;
+   CURR->next->prev = newnode;
+   CURR->next = newnode;
+}
+
+void popHead() {
+    if(!HEAD) {
+        return;
+    }
+
+    if(HEAD == TAIL) {
+        free(HEAD);
+        HEAD = TAIL = NULL;
+        return;
+    }
+
+    HEAD = HEAD->next;
+    free(HEAD->prev);
+    HEAD->prev = NULL;
+}
+
+void popTail() {
+    if(!HEAD) {
+        return;
+    }
+
+    if(HEAD == TAIL) {
+        free(HEAD);
+        HEAD = TAIL = NULL;
+        return;
+    }
+
+    TAIL = TAIL->prev;
+    free(TAIL->next);
+    TAIL->next = NULL;
+}
+
+
+void popSearch(int value) {
+    if(!HEAD) return;
+
+    if(HEAD->value == value) {
+        popHead();
+        return;
+    }
+
+    if(TAIL->value == value) {
+        popTail();
+        return;
+    }
+
+    CURR = HEAD;
+    while(CURR->value >= value) CURR = CURR->next;
+
+    Node* handle = CURR->next;
+    handle->prev = CURR->prev;
+    CURR->prev->next = handle;
+    
+    free(CURR);
+    CURR = NULL;
+}
+
+
+void view() {
+    CURR = HEAD;
+    while (CURR)
+    {
+        printf("%d ", CURR->value);
+        CURR = CURR->next;    
+    }
+}
+
+int main() {
+    pushSort(20);
+    pushSort(10);
+    pushSort(12);
+    pushSort(12);
+
+    popSearch(20);
+    view();
+}
+
+
+
+//BST
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct BST
+{
+    int val;
+    int umur;
+    BST *left, *right;
+};
+
+BST *ROOT = NULL;
+
+BST* createBST(int val, int umur) {
+    BST *newNode = (BST*)malloc(sizeof(BST));
+
+    newNode->val = val;
+    newNode->umur = umur;
+    newNode->left = newNode->right = NULL;
+
+    return newNode;
+}
+
+// mau curr apa root?
+BST* insertBST(BST* ROOT, BST* newNode) {
+    if(!ROOT) return newNode;
+
+    if(newNode->val > ROOT->val) ROOT->right = insertBST(ROOT->right, newNode);
+    if(newNode->val < ROOT->val) ROOT->left = insertBST(ROOT->left, newNode);
+
+    if(newNode->val == ROOT->val) ROOT->umur = newNode->umur;
+
+    return ROOT;
+}
+
+BST* getPrede(BST* ROOT) {
+    if(!ROOT) return NULL;
+
+    BST* replace = ROOT->left;
+    while(replace->right) replace = replace->right;
+
+    return replace;
+}
+
+BST* deleteBST(BST* ROOT, int val) {
+    if(!ROOT) return NULL;
+
+    if(val > ROOT->val) ROOT->right = deleteBST(ROOT->right, val);
+    if(val < ROOT->val) ROOT->left = deleteBST(ROOT->left, val);
+
+    if(val == ROOT->val) {
+        if(!ROOT->left && !ROOT->right) {
+            free(ROOT);
+            return NULL;
+        }
+
+        if(!ROOT->left) {
+            BST* replace = ROOT->right;
+            free(ROOT);
+
+            return replace;
+        }
+
+        if(!ROOT->right) {
+            BST* replace = ROOT->left;
+            free(ROOT);
+
+            return replace;
+        }
+
+        BST* replace = getPrede(ROOT);
+        ROOT->val = replace->val;
+        ROOT->umur = replace->umur;
+
+        ROOT->left = deleteBST(ROOT->left, replace->val);
+
+    }
+
+    return ROOT;
+}
+
+void preOrder(BST* ROOT) {
+    if(!ROOT) return;
+
+    printf("%d umur : %d\n", ROOT->val, ROOT->umur);
+    preOrder(ROOT->left);
+    preOrder(ROOT->right);
+} 
+
+int main() {
+    ROOT = insertBST(ROOT, createBST(8, 20));
+    ROOT = insertBST(ROOT, createBST(3, 12));
+    ROOT = insertBST(ROOT, createBST(2, 10));
+    ROOT = insertBST(ROOT, createBST(1, 9));
+    ROOT = insertBST(ROOT, createBST(4, 5));
+    ROOT = insertBST(ROOT, createBST(4, 70));
+
+    puts("sebelum");
+    preOrder(ROOT);
+    
+    ROOT = deleteBST(ROOT, 2);
+    puts("sesudah");
+    preOrder(ROOT);
+    
+}
