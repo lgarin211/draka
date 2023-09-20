@@ -2,15 +2,21 @@
   "img": [
     {
       "uri": "https://lgarin211.github.io/assets/img/portfolio/pp%20(3).jpg",
-      "name": "Agustinus The Owner"
+      "name": "Agustinus The Owner",
+      "link": "https://lgarin211.github.io",
+      "dec": "SIMPEL AJA"
     },
     {
       "uri": "https://lgarin211.github.io/assets/img/portfolio/etppad.png",
-      "name": "Mobile ETTPAD"
+      "name": "Mobile ETTPAD",
+      "link": "https://lgarin211.github.io",
+      "dec": "SIMPEL AJA"
     },
     {
       "uri": "https://lgarin211.github.io/assets/img/portfolio/JALA.png",
-      "name": "Jala In Playstrore"
+      "name": "Jala In Playstrore",
+      "link": "https://lgarin211.github.io",
+      "dec": "SIMPEL AJA"
     }
   ]
 }
