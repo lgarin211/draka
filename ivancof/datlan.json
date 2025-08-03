@@ -1,5 +1,5 @@
 {
   "base_url": "https://ubion.vercel.app",
-  "posfix": "/api",
+  "posfix": "",
   "active_at": "2025-08-04"
 }
