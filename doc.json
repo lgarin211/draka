@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "away_team_id": 30,
+      "away_team_logo": "https://nos.wjv-1.neo.id/moflip-bucket/_moflip_logos/club-logo-300-x-300/bhayangkara.png",
+      "away_team_name": "BHAYANGKARA PRESISI LAMPUNG FC",
+      "away_team_score": 0,
+      "date": "20 February 2026",
+      "datetime": "2026-02-20T13:30:00Z",
+      "home_team_id": 37,
+      "home_team_logo": "https://nos.wjv-1.neo.id/moflip-bucket/_moflip_logos/club-logo-300-x-300/persik.png",
+      "home_team_name": "PERSIK KEDIRI",
+      "home_team_score": 0,
+      "id": 250703399,
+      "meta": null,
+      "ribbon": null,
+      "stadium": "Brawijaya",
+      "status": false,
+      "ticket_sales_app_link": null,
+      "ticket_sales_app_live": null,
+      "ticket_sales_link": null,
+      "ticket_sales_link_bri": null,
+      "ticket_sales_link_bri_rp1": null,
+      "ticket_sales_live": null,
+      "ticket_sales_live_bri": null,
+      "ticket_sales_live_bri_rp1": null,
+      "ticket_sales_status": null,
+      "time": "20:30"
+    }
+  ],
+  "message": "Get liga 1 fixtures successfully",
+  "success": true
+}
