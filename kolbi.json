@@ -1,0 +1,70 @@
+[
+  {
+    "id": 123,
+    "author": { "id": 7, "username": "bima" },
+    "content": "Komentar utama",
+    "state": "UNREVIEWED",
+    "depth": 1,
+    "like_user_ids": [1, 2, 3],
+    "created_at": "2025-09-01T10:00:00Z",
+    "updated_at": "2025-09-01T10:00:00Z",
+    "replies": [
+      {
+        "id": 124,
+        "author": { "id": 8, "username": "andi" },
+        "content": "Reply level 2",
+        "state": "UNREVIEWED",
+        "depth": 2,
+        "like_user_ids": [1, 7],
+        "created_at": "2025-09-01T10:30:00Z",
+        "updated_at": "2025-09-01T10:30:00Z",
+        "replies": [
+          {
+            "id": 125,
+            "author": { "id": 9, "username": "sinta" },
+            "content": "Reply level 3",
+            "state": "UNREVIEWED",
+            "depth": 3,
+            "like_user_ids": [],
+            "created_at": "2025-09-01T11:00:00Z",
+            "updated_at": "2025-09-01T11:00:00Z",
+            "replies": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "author": { "id": 3, "username": "spam_user" },
+    "content": "Komentar yang tidak pantas dan melanggar aturan",
+    "state": "BANNED",
+    "depth": 1,
+    "like_user_ids": [],
+    "created_at": "2025-09-01T11:00:00Z",
+    "updated_at": "2025-09-01T11:00:00Z",
+    "replies": []
+  },
+  {
+    "id": 127,
+    "author": { "id": 4, "username": "reviewer" },
+    "content": "Komentar sedang direview moderator",
+    "state": "UNDER_REVIEW",
+    "depth": 1,
+    "like_user_ids": [1],
+    "created_at": "2025-09-01T12:00:00Z",
+    "updated_at": "2025-09-01T12:00:00Z",
+    "replies": []
+  },
+  {
+    "id": 128,
+    "author": { "id": 5, "username": "deleted_user" },
+    "content": "Komentar yang sudah dihapus",
+    "state": "DELETED",
+    "depth": 1,
+    "like_user_ids": [],
+    "created_at": "2025-09-01T13:00:00Z",
+    "updated_at": "2025-09-01T13:00:00Z",
+    "replies": []
+  }
+]
