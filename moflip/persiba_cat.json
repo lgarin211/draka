@@ -6,7 +6,6 @@
     "framework": "Next.js with Chakra UI",
     "last_analyzed": "2025-09-23"
   },
-  
   "seo_metadata": {
     "title": "PERSIBA BALIKPAPAN - Tentang Kami",
     "description": "Tentang Persiba Balikpapan - Klub sepak bola profesional asal Kota Balikpapan, Kalimantan Timur, yang berdiri sejak 1950. Dikenal dengan julukan Beruang Madu.",
@@ -17,7 +16,6 @@
     "og_image": "https://nos.wjv-1.neo.id/moflip-bucket/liga-satu/persiba-balikpapan.png",
     "favicon": "https://nos.wjv-1.neo.id/moflip-bucket/liga-satu/persiba-balikpapan.png"
   },
-  
   "ui_interface": {
     "layout_structure": {
       "hero_section": {
@@ -31,58 +29,63 @@
         "color_scheme": "blue"
       }
     },
-    
     "chakra_ui_components": [
-      "Box", "Container", "Heading", "Text", "Image", "Flex", 
-      "VStack", "Divider", "Tabs", "TabList", "TabPanels", 
-      "Tab", "TabPanel", "SimpleGrid"
+      "Box",
+      "Container",
+      "Heading",
+      "Text",
+      "Image",
+      "Flex",
+      "VStack",
+      "Divider",
+      "Tabs",
+      "TabList",
+      "TabPanels",
+      "Tab",
+      "TabPanel",
+      "SimpleGrid"
     ],
-    
     "chakra_ui_icons": [
-      "CheckCircleIcon", "PhoneIcon", "EmailIcon", "MapPinIcon"
+      "CheckCircleIcon",
+      "PhoneIcon",
+      "EmailIcon",
+      "MapPinIcon"
     ],
-    
     "responsive_breakpoints": {
       "base": "Mobile (0px+)",
-      "md": "Tablet (768px+)", 
+      "md": "Tablet (768px+)",
       "lg": "Desktop (1024px+)",
       "xl": "Large Desktop (1280px+)"
     }
   },
-  
   "color_system": {
     "primary_colors": {
-      "brand_blue": "#0b378e",
-      "primary_gradient": "linear-gradient(120deg, #1d326c 0%,#142149 100%)",
+      "brand_blue": "#00ff11",
+      "primary_gradient": "linear-gradient(120deg, #0b378e 0%,#142149 100%)",
       "secondary_gradient": "linear-gradient(90deg, #10539f 0%, #1576d3 50%, #56c5e3 100%)"
     },
-    
     "text_colors": {
-      "primary_text": "#fff", 
+      "primary_text": "#fff",
       "secondary_text": "#000",
       "tertiary_text": "#142149",
       "gray_text": "gray.700"
     },
-    
     "background_colors": {
       "hero_background": "#0b378e",
       "main_background": "#FBFAFA",
       "card_background": "white",
       "tab_background": "white"
     },
-    
     "accent_colors": {
       "divider_color": "#0b378e",
       "border_color": "gray.100",
       "selected_tab": "blue.500"
     },
-    
     "ui_components": {
       "button_primary_color": "#142149",
       "form_background_gradient": "linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 0.95) 25%, rgba(226, 232, 240, 0.9) 50%, rgba(241, 245, 249, 0.95) 75%, rgba(248, 250, 252, 1) 100%)",
       "logo_gradient": "linear-gradient(to bottom right, #1d1c1f, #142149)"
     },
-    
     "form_elements": {
       "input_background_gradient": "linear-gradient(135deg, rgba(70, 6, 12, 0.1) 0%, #142149 100%)",
       "input_border_color": "rgba(168, 15, 33, 0.2)",
@@ -91,13 +94,11 @@
       "phone_prefix_gradient": "linear-gradient(135deg, #142149 0%, #A80F21 100%)",
       "phone_prefix_shadow": "0 2px 4px #00B894"
     },
-    
     "tab_system": {
       "tab_container_background": "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.85) 100%)",
       "tab_container_border": "1px solid #142149",
       "tab_container_shadow": "inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 16px rgba(168, 15, 33, 0.08)"
     },
-    
     "button_styles": {
       "submit_button_gradient": "linear-gradient(135deg, #142149 0%, #A80F21 100%)",
       "submit_button_shadow": "0 4px 16px #00B894",
@@ -105,14 +106,12 @@
       "social_button_background": "#fff",
       "social_button_color": "#222"
     },
-    
     "modal_styles": {
       "mobile_header_gradient": "linear-gradient(135deg, #142149 0%, #A80F21 100%)",
       "mobile_header_shadow": "0 4px 16px rgba(168, 15, 33, 0.2)",
       "modal_email_text_color": "#E53935",
       "modal_button_background": "#F3F3F3"
     },
-    
     "football_patterns": {
       "football_pattern_overlay": "radial-gradient(circle at 15% 25%, rgba(168, 15, 33, 0.08) 1px, transparent 1px), radial-gradient(circle at 85% 75%, rgba(70, 6, 12, 0.06) 1px, transparent 1px), linear-gradient(45deg, transparent 49%, rgba(168, 15, 33, 0.02) 50%, transparent 51%)",
       "football_pattern_size": "60px 60px, 40px 40px, 120px 120px",
@@ -125,10 +124,8 @@
       "pattern_login_password": "radial-gradient(circle at 40% 60%, #00B894 2px, transparent 2px), radial-gradient(circle at 60% 40%, rgba(70, 6, 12, 0.2) 1px, transparent 1px)",
       "pattern_size": "20px 20px, 15px 15px"
     },
-    
     "backdrop_image": "url('https://nos.wjv-1.neo.id/moflip-bucket/assets/landingpersiba.png')"
   },
-  
   "wording_content": {
     "global_branding": {
       "web_name": "PERSIBA BALIKPAPAN",
@@ -137,19 +134,16 @@
       "city": "Balikpapan",
       "province": "Kalimantan Timur"
     },
-    
     "hero_section": {
       "main_title": "Tentang Kami",
       "subtitle": "Mengenal lebih dekat sejarah dan perjalanan Persiba Balikpapan, klub sepak bola kebanggaan Kota Minyak"
     },
-    
     "tab_labels": [
       "Sejarah Persiba",
-      "Syarat & Ketentuan", 
+      "Syarat & Ketentuan",
       "Peraturan Stadion",
       "Kontak"
     ],
-    
     "sejarah_content": {
       "title": "Sejarah Persiba Balikpapan",
       "paragraphs": [
@@ -158,11 +152,10 @@
         "Prestasi dan dedikasi Persiba telah mengukir namanya dalam sejarah sepak bola nasional. Tim yang bermarkas di Stadion Balikpapan ini terus berupaya memberikan yang terbaik untuk membanggakan para pendukung setia di seluruh Kalimantan Timur."
       ]
     },
-    
     "contact_info": {
       "office_address": {
         "street": "Jl. Soekarno Hatta No. 123",
-        "district": "Balikpapan Utara", 
+        "district": "Balikpapan Utara",
         "province": "Kalimantan Timur 76114",
         "country": "Indonesia"
       },
@@ -175,7 +168,7 @@
       "social_media": {
         "instagram": "@persiba_official",
         "facebook": "Persiba Balikpapan",
-        "twitter": "@Persiba_BP", 
+        "twitter": "@Persiba_BP",
         "youtube": "Persiba Balikpapan Official",
         "tiktok": "@persibabalikpapan"
       },
@@ -187,34 +180,29 @@
       }
     }
   },
-  
   "api_endpoints": {
     "primary_api": {
       "base_url": "https://halofans-api-staging.moflip.com",
       "community_id": "0e64fc83-d95c-495b-91e4-cbafae6dff25"
     },
-    
     "garuda_api": {
-      "endpoint": "https://garuda.moflip.com", 
+      "endpoint": "https://garuda.moflip.com",
       "spl": "https://spl.moflip.com",
       "halofans": "https://vesta.halofans.id"
     },
-    
     "image_cdn": {
       "base_url": "https://nos.wjv-1.neo.id/moflip-bucket",
       "club_logo": "https://nos.wjv-1.neo.id/moflip-bucket/liga-satu/persiba-balikpapan.png",
       "landing_image": "https://nos.wjv-1.neo.id/moflip-bucket/assets/landingpersiba.png"
     },
-    
     "auth_endpoints": {
       "login": "/auth/login",
-      "register": "/auth/register", 
+      "register": "/auth/register",
       "google_login": "/auth/google/login",
       "google_register": "/auth/google/login/register",
       "otp_verify": "/auth/otp/verify",
       "otp_resend": "/auth/otp/resend"
     },
-    
     "google_oauth": {
       "auth_url_endpoint": "/api/auth/google/url",
       "callback_endpoint": "/api/auth/google/callback",
@@ -222,62 +210,54 @@
       "scope": "openid email profile"
     }
   },
-  
   "environment_variables": {
     "required_env_vars": [
       "NEXT_PUBLIC_API_BASE_URL",
       "NEXT_PUBLIC_COMMUNITY_ID",
       "GOOGLE_CLIENT_ID",
-      "NEXT_PUBLIC_GOOGLE_CLIENT_ID", 
+      "NEXT_PUBLIC_GOOGLE_CLIENT_ID",
       "GOOGLE_CLIENT_SECRET"
     ],
-    
     "firebase_config": [
       "FIREBASE_API_KEY",
       "FIREBASE_AUTH_DOMAIN",
-      "FIREBASE_PROJECT_ID", 
+      "FIREBASE_PROJECT_ID",
       "FIREBASE_STORAGE_BUCKET",
       "FIREBASE_MESSAGING_SENDER_ID",
       "FIREBASE_APP_ID"
     ],
-    
     "api_config": [
       "API_URL",
-      "API_URL_PAYMENT", 
+      "API_URL_PAYMENT",
       "API_URL_STRAPI",
       "STRAPI_ENDPOINT",
       "QR_SECRET"
     ]
   },
-  
   "club_configuration": {
     "club_info": {
       "club_name": "PERSIBA",
       "club_id": "41",
-      "club_league": "Pegadaian League", 
+      "club_league": "Pegadaian League",
       "club_league_id": "89",
       "club_merch_slug": null
     },
-    
     "stadium_info": {
       "stadium_name": "Stadion Balikpapan",
       "city": "Balikpapan"
     }
   },
-  
   "authentication_system": {
     "auth_providers": [
       "email_password",
       "google_oauth"
     ],
-    
     "cookie_management": {
       "auth_token": "authToken",
       "token_expiry": "7 days",
       "secure_setting": false,
       "same_site": "lax"
     },
-    
     "google_oauth_config": {
       "client_id_env": "GOOGLE_CLIENT_ID",
       "redirect_uri": "/auth/google/callback",
@@ -286,38 +266,59 @@
       "access_type": "offline"
     }
   },
-  
   "styling_system": {
     "typography": {
-      "font_weights": ["normal", "bold"],
+      "font_weights": [
+        "normal",
+        "bold"
+      ],
       "font_sizes": {
         "base": "16px",
-        "md": "18px", 
+        "md": "18px",
         "lg": "24px",
         "xl": "28px",
         "2xl": "32px",
         "3xl": "36px",
         "4xl": "42px"
       },
-      "line_heights": ["1.6", "1.8"],
+      "line_heights": [
+        "1.6",
+        "1.8"
+      ],
       "letter_spacing": "0.3px"
     },
-    
     "spacing": {
-      "padding": ["16px", "24px", "32px", "48px", "80px"],
-      "margins": ["8px", "16px", "24px", "32px"],
-      "gaps": ["16px", "24px", "32px", "48px"]
+      "padding": [
+        "16px",
+        "24px",
+        "32px",
+        "48px",
+        "80px"
+      ],
+      "margins": [
+        "8px",
+        "16px",
+        "24px",
+        "32px"
+      ],
+      "gaps": [
+        "16px",
+        "24px",
+        "32px",
+        "48px"
+      ]
     },
-    
     "shadows": [
       "0 4px 16px rgba(0, 0, 0, 0.1)",
       "0 10px 30px rgba(0,0,0,0.1)",
       "drop-shadow(0 10px 20px rgba(0,0,0,0.3))"
     ],
-    
-    "border_radius": ["6px", "8px", "16px"]
+    "border_radius": [
+      "6px",
+      "8px",
+      "16px"
+    ]
   },
-  
   "content_management": {
     "content_sections": [
       {
@@ -326,13 +327,13 @@
         "editable": true
       },
       {
-        "section": "syarat_ketentuan", 
+        "section": "syarat_ketentuan",
         "type": "structured_list",
         "editable": true
       },
       {
         "section": "peraturan_stadion",
-        "type": "structured_list", 
+        "type": "structured_list",
         "editable": true
       },
       {
@@ -341,35 +342,33 @@
         "editable": true
       }
     ],
-    
     "dynamic_content": [
       "office_address",
-      "contact_details", 
+      "contact_details",
       "social_media_handles",
       "office_hours"
     ]
   },
-  
   "security_headers": {
     "csp_policy": "X-Content-Type-Options: nosniff",
-    "frame_options": "X-Frame-Options: DENY", 
+    "frame_options": "X-Frame-Options: DENY",
     "xss_protection": "X-XSS-Protection: 1; mode=block",
     "referrer_policy": "Referrer-Policy: strict-origin-when-cross-origin"
   },
-  
   "performance_optimization": {
     "caching": {
       "cache_control": "public, s-maxage=31536000, stale-while-revalidate=59",
       "query_client_stale_time": "10 seconds",
       "refetch_on_window_focus": false
     },
-    
     "image_optimization": {
-      "domains": ["nos.wjv-1.neo.id", "upload.wikimedia.org"],
+      "domains": [
+        "nos.wjv-1.neo.id",
+        "upload.wikimedia.org"
+      ],
       "protocol": "https"
     }
   },
-  
   "integration_points": {
     "external_services": [
       "Google OAuth 2.0",
@@ -378,28 +377,24 @@
       "Payment Gateway",
       "Analytics"
     ],
-    
     "internal_services": [
       "User Management API",
       "Membership System",
-      "Event Management", 
+      "Event Management",
       "Content Management"
     ]
   },
-
   "players_database": {
     "team_categories": {
       "persiba_balikpapan": "PERSIBA BALIKPAPAN",
       "persiba_muda": "PERSIBA MUDA"
     },
-    
     "player_positions": {
       "goalkeepers": "KIPER",
-      "defenders": "BUNTUT", 
+      "defenders": "BUNTUT",
       "midfielders": "GELANDANG",
       "forwards": "PENYERANG"
     },
-    
     "persiba_balikpapan_squad": {
       "goalkeepers": [
         {
@@ -480,7 +475,6 @@
         }
       ]
     },
-    
     "persiba_muda_squad": {
       "goalkeepers": [
         {
@@ -552,7 +546,6 @@
       ]
     }
   },
-
   "league_api_system": {
     "fixtures_api": {
       "base_endpoint": "https://garuda.moflip.com",
@@ -562,26 +555,22 @@
       "league_id": "89",
       "league_name": "Pegadaian League"
     },
-    
     "ticketing_status": {
       "ticket_open": "TICKET_OPEN",
-      "ticket_available_soon": "TICKET_AVAILABLE_SOON", 
+      "ticket_available_soon": "TICKET_AVAILABLE_SOON",
       "ticket_already_closed": "TICKET_ALREADY_CLOSED"
     },
-    
     "fixture_endpoints": {
       "get_fixtures_by_club": "https://garuda.moflip.com/api/fixtures/club/41",
       "get_klasemen": "https://garuda.moflip.com/api/fixtures/klasemen/89",
       "get_latest_match": "https://garuda.moflip.com/api/fixtures/club/41"
     },
-    
     "ticket_api": {
       "base_url": "/v1",
       "get_ticket_by_event": "/v1/events/{id}/tickets",
       "checkout_endpoint": "/v1/checkout/free"
     }
   },
-
   "news_api_system": {
     "news_endpoints": {
       "base_url": "https://ligafanid.moflip.com",
@@ -591,20 +580,20 @@
       "get_popular_news": "/api/news-id",
       "get_other_news": "/api/news-id"
     },
-    
     "news_pagination": {
       "default_page_size": 9,
       "latest_news_limit": 10,
       "popular_news_limit": 8,
       "other_news_limit": 6
     },
-    
     "news_sorting": {
-      "latest": ["date:desc", "createdAt:desc"],
+      "latest": [
+        "date:desc",
+        "createdAt:desc"
+      ],
       "popular": "viewerCount:desc",
       "spotlight": "date:desc"
     },
-    
     "news_demo_data": {
       "status": "using_constants",
       "fallback_source": "constants/news.constants.js",
@@ -619,7 +608,6 @@
       ]
     }
   },
-
   "media_api_system": {
     "gallery_api": {
       "s3_gallery_endpoint": "https://s3-gallery-api-silk.vercel.app/api/list-s3",
@@ -627,17 +615,14 @@
       "s3_prefix": "galleries",
       "gallery_base_url": "https://nos.wjv-1.neo.id/moflip-bucket/malut/media"
     },
-    
     "video_api": {
       "video_content_hook": "useGetHomePagesBanner",
       "video_base_url": "/api/video-banners"
     },
-    
     "gallery_types": {
       "foto": "FOTO",
       "video": "VIDEO"
     },
-    
     "media_demo_galleries": [
       {
         "image": "https://nos.wjv-1.neo.id/moflip-bucket/malut/media/451841894_405573045859748_3100404938708323066_n.jpg",
@@ -664,60 +649,56 @@
         "created_at": "20/02/24"
       }
     ],
-    
     "cors_configuration": {
       "allowed_origins": "*",
-      "allowed_methods": ["GET", "PUT", "POST", "DELETE"],
+      "allowed_methods": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE"
+      ],
       "allowed_headers": "*"
     }
   },
-
   "event_system": {
     "community_events": {
       "community_id": "0e64fc83-d95c-495b-91e4-cbafae6dff25",
       "events_endpoint": "/communities/0e64fc83-d95c-495b-91e4-cbafae6dff25/events",
       "event_detail_endpoint": "/v1/events/{id}"
     },
-    
     "membership_events": {
       "membership_plans_endpoint": "/communities/0e64fc83-d95c-495b-91e4-cbafae6dff25/membership-plans",
       "membership_requirements_endpoint": "/communities/0e64fc83-d95c-495b-91e4-cbafae6dff25/membership-plans/{planId}/requirements",
       "membership_register_endpoint": "/communities/0e64fc83-d95c-495b-91e4-cbafae6dff25/membership-plans/{planId}/register",
       "membership_status_endpoint": "/membership/status"
     },
-    
     "fixture_events": {
       "match_events": "linked_to_fixtures_api",
       "ticket_events": "linked_to_ticket_api",
       "live_streaming_events": "iframe_modal_integration"
     },
-    
     "iframe_integration": {
       "embed_url_env": "NEXT_PUBLIC_EMBED_URL",
       "fallback_json": "https://nos.wjv-1.neo.id/moflip-bucket/assets/basepath/psmvestaticket.json",
       "iframe_modal_component": "IFrameModal"
     }
   },
-
   "additional_api_configurations": {
     "strapi_cms": {
       "base_url": "https://ligafanid.moflip.com",
       "news_endpoint": "/api/news-id",
       "video_banners_endpoint": "/api/video-banners"
     },
-    
     "vesta_api": {
       "base_url": "https://vesta.halofans.id",
       "events_endpoint": "/v1/events",
       "tickets_endpoint": "/v1/events/{id}/tickets",
       "collections_endpoint": "/v1/collections/events"
     },
-    
     "payment_api": {
       "base_url": "https://vesta-pay.tiketnft.io",
       "checkout_endpoint": "/v1/checkout/free"
     },
-    
     "goapi_regional": {
       "base_url": "https://api.goapi.id/v1/regional",
       "api_key": "CKHsgoRcKSYnwpbf216OjBZt6Hc8js"
