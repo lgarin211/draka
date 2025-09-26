@@ -60,8 +60,8 @@
   },
   "color_system": {
     "primary_colors": {
-      "brand_blue": "#00ff11",
-      "primary_gradient": "linear-gradient(120deg, #0b378e 0%,#142149 100%)",
+      "brand_blue": "#0b378e",
+      "primary_gradient": "linear-gradient(120deg, #1d326c 0%,#142149 100%)",
       "secondary_gradient": "linear-gradient(90deg, #10539f 0%, #1576d3 50%, #56c5e3 100%)"
     },
     "text_colors": {
@@ -398,79 +398,164 @@
     "persiba_balikpapan_squad": {
       "goalkeepers": [
         {
-          "name": "Muhammad Ardiansyah",
+          "name": "Pancar",
           "number": 1,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Reza Arya Pratama",
-          "number": 30,
+          "name": "Havizd Muzaki",
+          "number": 31,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Rizki Kusni",
+          "number": 81,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Achmad Alfarizi",
+          "number": 80,
           "image": "https://placehold.co/326x380"
         }
       ],
       "defenders": [
         {
-          "name": "Yuran Fernandes",
+          "name": "Rical Vieri",
+          "number": 22,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Bintang Arrahim",
+          "number": 5,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Shokhrukhbek Kholmatov",
+          "number": 70,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Valda Uzlah",
+          "number": 24,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Muhammad Ilham",
           "number": 4,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Aloísio Neto",
+          "name": "Rival Hidayat",
+          "number": 38,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Aljufri Daud",
           "number": 2,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Syahrul Lasinari",
-          "number": 13,
+          "name": "Abdul Rachman",
+          "number": 7,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Victor Luiz",
-          "number": 22,
+          "name": "Habibie",
+          "number": 29,
           "image": "https://placehold.co/326x380"
         }
       ],
       "midfielders": [
         {
-          "name": "Akbar Tanjung",
-          "number": 45,
+          "name": "Dwi Geno Nofiansyah",
+          "number": 15,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Ananda Raehan",
+          "name": "Dwiki Arya",
+          "number": 18,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Bryan Cesar",
           "number": 8,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Daisuke Sakai",
-          "number": 10,
+          "name": "Fabio Royyan",
+          "number": 16,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Latyr Fall",
+          "name": "Nassim Fauzi",
+          "number": 23,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Kodai Nagashima",
+          "number": 79,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Isfandyar Abdillah",
           "number": 19,
           "image": "https://placehold.co/326x380"
         }
       ],
       "forwards": [
         {
-          "name": "Nermin Haljeta",
-          "number": 99,
+          "name": "Lorensius Sabda",
+          "number": 77,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Ricky Pratama",
-          "number": 15,
+          "name": "Jonathan Prawira",
+          "number": 6,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Dzaky Asraf",
-          "number": 11,
+          "name": "Wahyu Poru",
+          "number": 78,
           "image": "https://placehold.co/326x380"
         },
         {
-          "name": "Victor Dethan",
-          "number": 7,
+          "name": "Arsa Ahmad",
+          "number": 91,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Dennish Diaz",
+          "number": 28,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Masagus Zakaria",
+          "number": 21,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Beni Oktovianto",
+          "number": 62,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Gufran",
+          "number": 17,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Anggi Prasito",
+          "number": 45,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Takumu Nishihara",
+          "number": 10,
+          "image": "https://placehold.co/326x380"
+        },
+        {
+          "name": "Rishadi Fauzi",
+          "number": 9,
           "image": "https://placehold.co/326x380"
         }
       ]
