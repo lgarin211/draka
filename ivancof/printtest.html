@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Thermal Print via Bluetooth (Demo)</title>
+    <style>
+        body {
+            font-family: system-ui, Arial;
+            max-width: 760px;
+            margin: 24px auto;
+            padding: 12px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+        }
+
+        .log {
+            white-space: pre-wrap;
+            background: #f6f6f6;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Thermal Print — Web Bluetooth / Serial</h1>
+    <p>1) Coba <strong>Connect (BLE/GATT)</strong> dulu. Jika tidak berhasil, <strong>pair</strong> printer di OS lalu
+        gunakan <strong>Connect (Serial)</strong>.</p>
+
+    <div>
+        <button id="btnGatt">Connect (BLE / GATT)</button>
+        <button id="btnSerial">Connect (Serial - paired)</button>
+        <button id="btnDisconnect">Disconnect</button>
+    </div>
+
+    <label>Isi teks struk:</label>
+    <textarea
+        id="txt">Nama Toko\nAlamat Toko\n----------------------------\nItem A  1 x 10000\nItem B  2 x  8000\n----------------------------\nTOTAL  26000\nTerima kasih!\n</textarea>
+
+    <div>
+        <button id="btnPrint">Print Text</button>
+    </div>
+
+    <h3>Log</h3>
+    <div id="log" class="log"></div>
+
+    <script>
+        const logEl = document.getElementById('log');
+        function log(...args) { logEl.textContent += args.join(' ') + '\\n'; logEl.scrollTop = logEl.scrollHeight; }
+
+        let bleDevice = null;
+        let bleServer = null;
+        let bleTxCharacteristic = null; // write
+        let serialPort = null;
+        let serialWriter = null;
+
+        /*
+         ESC/POS helpers
+        */
+        function escInit() {
+            return new Uint8Array([0x1b, 0x40]); // Initialize printer
+        }
+        function escNewline() {
+            return new Uint8Array([0x0a]); // LF
+        }
+        function escCutFull() {
+            // Common full cut command (may vary by printer)
+            return new Uint8Array([0x1d, 0x56, 0x00]);
+        }
+        function textToBytes(str) {
+            // use utf-8; many thermal printers expect CP437/latin1 — if characters wrong, need encoding library.
+            return new TextEncoder().encode(str);
+        }
+
+        async function connectGatt() {
+            try {
+                log('Mencari device BLE ...');
+                // Try common UART-like service (Nordic UART, others). This is a best-effort.
+                const NUS_SERVICE = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+
+                bleDevice = await navigator.bluetooth.requestDevice({
+                    // You may remove services to show all devices (but Chrome may require filters)
+                    acceptAllDevices: true,
+                    optionalServices: [NUS_SERVICE]
+                });
+
+                log('Tersambung ke', bleDevice.name || bleDevice.id);
+                bleServer = await bleDevice.gatt.connect();
+
+                // Try to find a writeable characteristic:
+                //  - Nordic UART TX characteristic UUID: 6e400002-b5a3-f393-e0a9-e50e24dcca9e
+                // Some devices use custom UUIDs; optionalServices requested above helps.
+                const TX_CHAR = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+
+                try {
+                    const service = await bleServer.getPrimaryService(NUS_SERVICE);
+                    bleTxCharacteristic = await service.getCharacteristic(TX_CHAR);
+                    log('Dapat characteristic TX (NUS). Siap kirim via GATT.');
+                } catch (e) {
+                    // fallback: enumerate services / characteristics and choose a writable one
+                    log('UUID NUS tidak ditemukan, coba scan characteristic lain...');
+                    const services = await bleServer.getPrimaryServices();
+                    for (const s of services) {
+                        const chs = await s.getCharacteristics();
+                        for (const c of chs) {
+                            const props = c.properties;
+                            if (props.write || props.writeWithoutResponse) {
+                                bleTxCharacteristic = c;
+                                log('Menemukan characteristic writable:', c.uuid);
+                                break;
+                            }
+                        }
+                        if (bleTxCharacteristic) break;
+                    }
+                    if (!bleTxCharacteristic) throw new Error('Tidak menemukan characteristic writable.');
+                }
+
+                bleDevice.addEventListener('gattserverdisconnected', () => {
+                    log('BLE disconnected');
+                    bleDevice = null;
+                    bleServer = null;
+                    bleTxCharacteristic = null;
+                });
+
+            } catch (err) {
+                log('GATT connect error:', err.message || err);
+                throw err;
+            }
+        }
+
+        async function sendGattBytes(bytes) {
+            if (!bleTxCharacteristic) throw new Error('BLE characteristic belum siap.');
+            // Some characteristics require chunked writes — limit ~20-512 depending on device.
+            const MTU = 180; // safe chunk size
+            for (let i = 0; i < bytes.length; i += MTU) {
+                const chunk = bytes.slice(i, i + MTU);
+                // choose writeWithoutResponse if available
+                if (bleTxCharacteristic.properties.writeWithoutResponse) {
+                    await bleTxCharacteristic.writeValueWithoutResponse(chunk);
+                } else {
+                    await bleTxCharacteristic.writeValue(chunk);
+                }
+            }
+            log('Terkirim', bytes.length, 'bytes via GATT');
+        }
+
+        /* SERIAL (fallback) */
+        async function connectSerial() {
+            if (!('serial' in navigator)) {
+                throw new Error('Web Serial API tidak tersedia di browser ini.');
+            }
+            log('Meminta port serial (pilih printer yang sudah dipair di OS)...');
+            // No filters to allow user to pick COM port created by Bluetooth SPP
+            serialPort = await navigator.serial.requestPort();
+            await serialPort.open({ baudRate: 9600 }); // coba 9600 (banyak printer pakai 9600/19200/38400/57600)
+            serialWriter = serialPort.writable.getWriter();
+            log('Serial terbuka:', serialPort.getInfo ? JSON.stringify(serialPort.getInfo()) : serialPort);
+        }
+
+        async function sendSerialBytes(bytes) {
+            if (!serialWriter) throw new Error('Serial belum terhubung.');
+            await serialWriter.write(bytes);
+            log('Terkirim', bytes.length, 'bytes via Serial');
+        }
+
+        async function disconnectAll() {
+            try {
+                if (bleDevice && bleDevice.gatt && bleDevice.gatt.connected) {
+                    bleDevice.gatt.disconnect();
+                    log('BLE disconnected');
+                }
+            } catch (e) { }
+            try {
+                if (serialWriter) { await serialWriter.releaseLock(); serialWriter = null; }
+                if (serialPort) { await serialPort.close(); serialPort = null; log('Serial closed'); }
+            } catch (e) { log('Error closing serial', e); }
+        }
+
+        /* UI bindings */
+        document.getElementById('btnGatt').addEventListener('click', async () => {
+            try {
+                await connectGatt();
+            } catch (e) {
+                log('GATT failed:', e.message || e);
+            }
+        });
+
+        document.getElementById('btnSerial').addEventListener('click', async () => {
+            try {
+                await connectSerial();
+            } catch (e) {
+                log('Serial connect failed:', e.message || e);
+            }
+        });
+
+        document.getElementById('btnDisconnect').addEventListener('click', async () => {
+            await disconnectAll();
+        });
+
+        document.getElementById('btnPrint').addEventListener('click', async () => {
+            const txt = document.getElementById('txt').value;
+            // Build ESC/POS payload
+            const parts = [];
+            parts.push(escInit());
+            parts.push(textToBytes(txt));
+            parts.push(escNewline());
+            // Feed extra lines to ensure paper advances
+            parts.push(new Uint8Array([0x0a, 0x0a, 0x0a]));
+            // Optional cut (may or may not work on your model)
+            parts.push(escCutFull());
+
+            // concat
+            let totalLen = parts.reduce((s, p) => s + p.length, 0);
+            const payload = new Uint8Array(totalLen);
+            let offset = 0;
+            for (const p of parts) { payload.set(p, offset); offset += p.length; }
+
+            try {
+                if (bleTxCharacteristic) {
+                    await sendGattBytes(payload);
+                } else if (serialWriter) {
+                    await sendSerialBytes(payload);
+                } else {
+                    throw new Error('Belum terhubung ke printer (gunakan Connect BLE atau Connect Serial).');
+                }
+                log('Print command sent.');
+            } catch (err) {
+                log('Print failed:', err.message || err);
+            }
+        });
+    </script>
+</body>
+
+</html>
