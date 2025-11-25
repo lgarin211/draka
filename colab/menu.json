@@ -12,7 +12,7 @@
     "isPremium": false,
     "openType": "webview",
     "target": "https://fitcost.vercel.app/",
-    "order": 5
+    "order": 4
   },{
     "name": "KE GOOGLE",
     "icon": "calendar-outline",
@@ -55,18 +55,4 @@
     "target": "ProfileScreen",
     "order": 2
   },
-  {
-    "name": "Promo Premium",
-    "icon": "star-outline",
-    "color": "#9C27B0",
-    "bgGradient": ["#9C27B0", "#CE93D8"],
-    "description": "Fitur spesial untuk member premium",
-    "badge": "VIP",
-    "image": null,
-    "type": "premium",
-    "isPremium": true,
-    "openType": "modal",
-    "target": "PremiumModal",
-    "order": 4
-  }
 ]
