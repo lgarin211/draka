@@ -14,6 +14,20 @@
     "order": 1
   },
   {
+    "name": "Ke Google",
+    "icon": "calendar-outline",
+    "color": "#2196F3",
+    "bgGradient": ["#2196F3", "#6EC6FF"],
+    "description": "Lihat event terbaru di daerahmu",
+    "badge": "NEW",
+    "image": null,
+    "type": "primary",
+    "isPremium": false,
+    "openType": "webview",
+    "target": "https://google.com",
+    "order": 1
+  },
+  {
     "name": "Profil",
     "icon": "person-outline",
     "color": "#FF9800",
