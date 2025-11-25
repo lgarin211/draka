@@ -1,5 +1,19 @@
 [
+    
     {
+    "name": "KE FITCOST",
+    "icon": "calendar-outline",
+    "color": "#2196F3",
+    "bgGradient": ["#2196F3", "#6EC6FF"],
+    "description": "Lihat event terbaru di daerahmu",
+    "badge": "NEW",
+    "image": null,
+    "type": "primary",
+    "isPremium": false,
+    "openType": "webview",
+    "target": "https://fitcost.vercel.app/",
+    "order": 5
+  },{
     "name": "KE GOOGLE",
     "icon": "calendar-outline",
     "color": "#2196F3",
@@ -53,6 +67,6 @@
     "isPremium": true,
     "openType": "modal",
     "target": "PremiumModal",
-    "order": 3
+    "order": 4
   }
 ]
