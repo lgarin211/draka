@@ -1,33 +1,5 @@
 [
   {
-    "name": "KE FITCOST",
-    "icon": "calendar-outline",
-    "color": "#2196F3",
-    "bgGradient": ["#2196F3", "#6EC6FF"],
-    "description": "Lihat event terbaru di daerahmu",
-       "badge": "NEW",
-    "image": null,
-    "type": "primary",
-    "isPremium": false,
-    "openType": "webview",
-    "target": "https://fitcost.vercel.app/",
-    "order": 4
-  },
-  {
-    "name": "KE GOOGLE",
-    "icon": "calendar-outline",
-    "color": "#2196F3",
-    "bgGradient": ["#2196F3", "#6EC6FF"],
-    "description": "Lihat event terbaru di daerahmu",
-    "badge": "NEW",
-    "image": null,
-    "type": "primary",
-    "isPremium": false,
-    "openType": "webview",
-    "target": "https://www.google.com",
-    "order": 1
-  },
-  {
     "name": "Event Terbaru",
     "icon": "calendar-outline",
     "color": "#2196F3",
@@ -38,8 +10,8 @@
     "type": "primary",
     "isPremium": false,
     "openType": "webview",
-    "target": "https://example.com/event",
-    "order": 3
+    "target": "https://fitcost.vercel.app",
+    "order": 1
   },
   {
     "name": "Profil",
@@ -54,5 +26,19 @@
     "openType": "screen",
     "target": "ProfileScreen",
     "order": 2
+  },
+  {
+    "name": "Promo Premium",
+    "icon": "star-outline",
+    "color": "#9C27B0",
+    "bgGradient": ["#9C27B0", "#CE93D8"],
+    "description": "Fitur spesial untuk member premium",
+    "badge": "VIP",
+    "image": null,
+    "type": "premium",
+    "isPremium": true,
+    "openType": "modal",
+    "target": "PremiumModal",
+    "order": 3
   }
 ]
