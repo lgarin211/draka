@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Event Terbaru",
+    "icon": "calendar-outline",
+    "color": "#2196F3",
+    "bgGradient": ["#2196F3", "#6EC6FF"],
+    "description": "Lihat event terbaru di daerahmu",
+    "badge": "NEW",
+    "image": null,
+    "type": "primary",
+    "isPremium": false,
+    "openType": "webview",
+    "target": "https://example.com/event",
+    "order": 1
+  },
+  {
+    "name": "Profil",
+    "icon": "person-outline",
+    "color": "#FF9800",
+    "bgGradient": ["#FF9800", "#FFC947"],
+    "description": "Kelola data akun dan pengaturan",
+    "badge": null,
+    "image": null,
+    "type": "default",
+    "isPremium": false,
+    "openType": "screen",
+    "target": "ProfileScreen",
+    "order": 2
+  },
+  {
+    "name": "Promo Premium",
+    "icon": "star-outline",
+    "color": "#9C27B0",
+    "bgGradient": ["#9C27B0", "#CE93D8"],
+    "description": "Fitur spesial untuk member premium",
+    "badge": "VIP",
+    "image": null,
+    "type": "premium",
+    "isPremium": true,
+    "openType": "modal",
+    "target": "PremiumModal",
+    "order": 3
+  }
+]
