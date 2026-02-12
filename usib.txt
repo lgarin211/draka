@@ -161,3 +161,61 @@ echo "Username: admin"
 PASSWORD=$(sudo kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode)
 echo "Password: $PASSWORD"
 echo "----------------------------------------------------"
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+# Script to enable SSH password authentication for user 'ubuntu'
+# Usage: sudo ./enable_ssh_password.sh
+
+set -e
+
+USERNAME="ubuntu"
+PASSWORD="logintemp123!" # Change this password as needed
+
+# 1. Ensure user exists
+if id "$USERNAME" &>/dev/null; then
+    echo "User $USERNAME already exists."
+else
+    echo "Creating user $USERNAME..."
+    useradd -m -s /bin/bash "$USERNAME"
+fi
+
+# 2. Set password
+echo "Setting password for $USERNAME..."
+echo "$USERNAME:$PASSWORD" | chpasswd
+
+# 3. Configure SSHD
+SSH_CONFIG="/etc/ssh/sshd_config"
+echo "Enabling PasswordAuthentication in $SSH_CONFIG..."
+
+# Backup config
+cp $SSH_CONFIG "$SSH_CONFIG.bak"
+
+# Ensure PasswordAuthentication is yes
+if grep -q "^PasswordAuthentication" $SSH_CONFIG; then
+    sed -i 's/^PasswordAuthentication .*/PasswordAuthentication yes/' $SSH_CONFIG
+else
+    echo "PasswordAuthentication yes" >> $SSH_CONFIG
+fi
+
+# 4. Remove Cloud-Init overrides (Common on AWS/Cloud images)
+override_file="/etc/ssh/sshd_config.d/60-cloudimg-settings.conf"
+if [ -f "$override_file" ]; then
+    echo "Removing cloud-init SSH override: $override_file"
+    rm "$override_file"
+fi
+
+# 5. Restart SSH Service
+echo "Restarting SSH service..."
+systemctl restart ssh
+
+echo "Done! You can now SSH with: ssh $USERNAME@<server-ip>"
+echo "Password: $PASSWORD"
