@@ -1,0 +1,163 @@
+#!/bin/bash
+set -e
+
+# powepos.sh - Automated Installation of Nginx, Ansible, and AWX on K3s
+
+echo "Starting installation..."
+
+# 1. System Preparation
+echo "Updating system packages..."
+sudo apt-get update
+sudo apt-get install -y curl git make software-properties-common
+
+# 2. Install Docker
+if ! command -v docker &> /dev/null; then
+    echo "Installing Docker..."
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo usermod -aG docker $USER
+    rm get-docker.sh
+else
+    echo "Docker already installed."
+fi
+
+# 3. Install Ansible
+if ! command -v ansible &> /dev/null; then
+    echo "Installing Ansible..."
+    sudo apt-add-repository --yes --update ppa:ansible/ansible
+    sudo apt-get install -y ansible
+else
+    echo "Ansible already installed."
+fi
+
+# 4. Install Nginx
+if ! command -v nginx &> /dev/null; then
+    echo "Installing Nginx..."
+    sudo apt-get install -y nginx
+else
+    echo "Nginx already installed."
+fi
+
+# 5. Install K3s
+if ! command -v k3s &> /dev/null; then
+    echo "Installing K3s..."
+    curl -sfL https://get.k3s.io | sh -
+    sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+    export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+    echo "Waiting for K3s to be ready..."
+    sleep 10
+else
+    echo "K3s already installed."
+fi
+
+# 6. Install AWX Operator
+echo "Installing AWX Operator..."
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+export AWX_OPERATOR_VERSION="2.19.1"
+
+# Clone/Setup directory
+mkdir -p awx-install-script
+cd awx-install-script
+
+# Create Kustomization for Operator
+cat <<EOF > kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - github.com/ansible/awx-operator/config/default?ref=${AWX_OPERATOR_VERSION}
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: ${AWX_OPERATOR_VERSION}
+namespace: awx
+EOF
+
+# Create Namespace and Apply
+sudo kubectl create namespace awx || true
+sudo kubectl apply -k .
+
+echo "Waiting for AWX Operator to stay ready..."
+sudo kubectl wait --for=condition=available deployment/awx-operator-controller-manager -n awx --timeout=300s
+sleep 5
+
+# 7. Deploy AWX Instance
+echo "Deploying AWX Instance (awx-demo)..."
+
+# Create AWX Instance manifest
+cat <<EOF > awx-demo.yaml
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-demo
+spec:
+  service_type: NodePort
+  ingress_type: none
+  hostname: awx.example.com
+EOF
+
+# Update Kustomization to include AWX instance
+cat <<EOF > kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - github.com/ansible/awx-operator/config/default?ref=${AWX_OPERATOR_VERSION}
+  - awx-demo.yaml
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: ${AWX_OPERATOR_VERSION}
+namespace: awx
+EOF
+
+# Apply AWX Instance
+sudo kubectl apply -k .
+
+echo "Waiting for AWX Instance to be deployed (this may take a few minutes)..."
+# Loop until admin password secret is available
+attempt=0
+max_attempts=60
+while ! sudo kubectl get secret awx-demo-admin-password -n awx &> /dev/null; do
+    if [ $attempt -eq $max_attempts ]; then
+        echo "Timeout waiting for AWX secret."
+        exit 1
+    fi
+    echo "Waiting for AWX secret... ($attempt/$max_attempts)"
+    sleep 10
+    ((attempt++))
+done
+
+echo "AWX Secret found. Waiting for Web Pod to be Running..."
+sudo kubectl wait --for=condition=Ready pod -l app.kubernetes.io/component=awx-web -n awx --timeout=600s
+
+# 8. Configure Nginx Reverse Proxy
+echo "Configuring Nginx..."
+cat <<EOF | sudo tee /etc/nginx/sites-available/awx
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost:32321;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+EOF
+
+sudo ln -sf /etc/nginx/sites-available/awx /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl reload nginx
+
+# 9. Output Credentials
+echo "----------------------------------------------------"
+echo "Installation Complete!"
+echo "----------------------------------------------------"
+echo "URL: http://$(curl -s ifconfig.me) (or http://localhost)"
+echo "Username: admin"
+PASSWORD=$(sudo kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode)
+echo "Password: $PASSWORD"
+echo "----------------------------------------------------"
