@@ -1,1 +1,5 @@
-
+{
+    "name": "Parental",
+    "version": "1.0.0",
+    "base_url": "https://sns.bri.co.id/Login/BristarsLogin.aspx?personalNumber=00345897&token=778cb385c1bba480925700b9dd0467a87481d7657fe8aacec70ff8ef6ce97b7a"
+}
